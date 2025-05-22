@@ -1,14 +1,14 @@
 const fs = require('fs');
-const { v4: uuidv4 } = require('uuid'); 
+const { v4: uuidv4 } = require('uuid');
 
 /**
- * @param {string} nomeAluno 
+ * Adiciona uma mensagem de log ao arquivo logs.txt.
+ *
+ * @param {string} nomeAluno
+ * @returns {string} O ID único gerado para o log.
  */
 function adicionarLog(nomeAluno) {
-    // Gerar um ID único aleatório
     const logId = uuidv4();
-
-    // Obter a data e hora atual
     const dataHora = new Date().toLocaleString('pt-BR', {
         year: 'numeric',
         month: '2-digit',
@@ -16,7 +16,7 @@ function adicionarLog(nomeAluno) {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
-        hour12: false // Formato 24 horas
+        hour12: false
     }).replace(',', '');
 
     const mensagemLog = `${logId} - ${dataHora} - ${nomeAluno}\n`;
@@ -28,9 +28,10 @@ function adicionarLog(nomeAluno) {
             console.log(`Mensagem de log adicionada com sucesso: ${mensagemLog.trim()}`);
         }
     });
+
+    return logId; // Retorna o 
 }
 
-// Exemplo de uso
 if (require.main === module) {
     adicionarLog("João Silva");
     adicionarLog("Maria Oliveira");
@@ -45,7 +46,7 @@ if (require.main === module) {
                 console.log(data);
             }
         });
-    }, 100); // atraso
+    }, 100);
 }
 
 module.exports = adicionarLog;
